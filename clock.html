@@ -1,70 +1,142 @@
 <!DOCTYPE html>
-<html><head><meta  content="text/html; charset=utf-8;width=device-width">
-    
-    <title>中考倒计时</title>
+<html>
 
-    <style>
-        body {
-          color: #000000;
-          background-color: #ffffff;
-        }
-        .page{
-          position: fixed;
-          width: 100%;
-          height: 100%;
-        }
-        .break{
-          height:40%;
-        }
-        .time{
-            font-size:5rem;
-            text-align:center;
-            height:20%;
-        }
-    </style>
+<head>
+  <meta content="text/html; charset=utf-8;width=device-width">
+
+  <title>中考倒计时</title>
+
+  <style>
+    body {
+      background-color: #444444;
+    }
+
+    .page {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+
+    #up {
+      height: 20%;
+    }
+
+    #left {
+      width: 18rem;
+      height: 10rem;
+    }
+
+    .text {
+      font-family: Arial;
+      text-align: center;
+      color: rgb(255, 255, 255);
+    }
+
+    .container {
+      float: left;
+    }
+
+    .time {
+      background-color: #4e74c5;
+      margin-right: 1rem;
+      width: 10rem;
+      height: 10rem;
+      font-size: 8rem;
+      vertical-align: middle;
+    }
+    p{
+      width: 10rem;
+      font-size: 2rem;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+    h1{
+      font-size: 3rem;
+    }
+    h2{
+      clear: both;
+      text-align: center;
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="page">
-      <div class="break" id= "1"></div>
-      <div class= "time" id="countdown">距离生地中考还有</div>
-      <div class="break" id= "1"></div>
-    </p>
+  <div class="page">
+    <div class="break" id="up"></div>
+    <div class="text">
+      <h1>距离生地一模还有</h1>
+      <div class="container" id="left"></div>
+      <div class="container">
+        <div class="time" id="d">14</div>
+        <p>天</p>
+      </div>
+      <div class="container">
+        <div class="time" id="h">3</div>
+        <p>小时</p>
+      </div>
+      <div class="container">
+        <div class="time" id="m">1</div>
+        <p>分钟</p>
+
+      </div>
+      <div class="container">
+        <div class="time" id="s">24</div>
+        <p>秒</p>
+
+      </div>
+      <h2 id="saying">此刻打盹，你将做梦；而此刻学习，你将圆梦。</h2>
+    </div>
     <script>
-      function update() {
-        function isGreaterMouth(Month){
-            return Month == 1||Month == 3||Month == 5||Month == 7||Month == 8||Month == 10||Month == 12
+      var SayingUpdateCounter = 0;
+      function updateTime() {
+        function isGreaterMouth(Month) {
+          return Month == 1 || Month == 3 || Month == 5 || Month == 7 || Month == 8 || Month == 10 || Month == 12
         }
         var date = new Date()
         var utc8DiffMinutes = date.getTimezoneOffset() + 480
         date.setMinutes(date.getMinutes() + utc8DiffMinutes)
-        var countdownTarget = new Date(2021,6,28,8,0,0,0)
+        date.setMonth(date.getMonth()+1);
+        var countdownTarget = new Date(2021, 4, 29, 0, 0, 0, 0)
         var d = 0
         var h = 23 - date.getHours();
         var m = 59 - date.getMinutes();
         var s = 59 - date.getSeconds();
-        for(var i = date.getMonth()+2;i<countdownTarget.getMonth();i++){
-            if(isGreaterMouth(i)){
+        for (var i = date.getMonth() + 1; i < countdownTarget.getMonth(); i++) {
+          if (isGreaterMouth(i)) {
             d += 31
-            }
-            else{
+          }
+          else {
             d += 30
-            }
+          }
         }
-        if(isGreaterMouth(date.getMonth()+1)){
-            d += 31-date.getDate()
+        if (isGreaterMouth(date.getMonth())) {
+          d += 31 - date.getDate();
         }
-        else{
-            d += 30-date.getDate()
+        else {
+          d += 30 - date.getDate();
         }
-        d += countdownTarget.getDate()
-        var countdownString = "距离生地中考还有"+"<br>"+d.toString()+"天" + h +"小时"+m+"分钟"+s+"秒";
-
-        document.getElementById("countdown").innerHTML = countdownString
-
+        if (date.getMonth() != countdownTarget.getMonth()) {
+          d += countdownTarget.getDate()
+        }
+        document.getElementById("d").innerText=d.toString();
+        document.getElementById("h").innerText=h.toString();
+        document.getElementById("m").innerText=m.toString();
+        document.getElementById("s").innerText=s.toString();
       }
-      update()
-      setInterval("update()", 1000)
+      function updateSaying(){
+        var Sayings = new Array();
+        Sayings[0] = "此刻打盹，你将做梦；而此刻学习，你将圆梦。";
+        Sayings[1] = "勿将今日之事拖到明日。"
+        document.getElementById("saying").innerText = Sayings[SayingUpdateCounter%Sayings.length];
+        SayingUpdateCounter++;
+      }
+      updateTime();
+      updateSaying();
+      setInterval("updateTime()", 1000);
+      setInterval("updateSaying()",1000);
     </script>
 
-</body></html>
+</body>
+
+</html>
