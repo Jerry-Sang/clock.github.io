@@ -4,7 +4,7 @@
 <head>
   <meta content="charset=utf-8;width=device-width">
 
-  <title>ä¸­è€ƒå€’è®¡æ—¶</title>
+  <title>ÖĞ¿¼µ¹¼ÆÊ±</title>
 
   <style>
     body {
@@ -18,7 +18,7 @@
     }
 
     #up {
-      height: 14vh;
+      height: 10vh;
     }
 
     #left {
@@ -44,19 +44,22 @@
       font-size: 11vw;
       vertical-align: middle;
     }
-    p{
-      width: 10rem;
-      font-size: 2rem;
+
+    p {
+      font-size:2vw;
       margin-top: 0.5rem;
       text-align: center;
     }
-    h1{
-      font-size: 3rem;
+
+    h1 {
+      font-size: 5rem;
     }
-    h2{
+
+    h2 {
       clear: both;
       text-align: center;
       color: white;
+      font-size: 2rem;
     }
   </style>
 </head>
@@ -65,30 +68,30 @@
   <div class="page">
     <div class="break" id="up"></div>
     <div class="text">
-      <h1>è·ç¦»ç”Ÿåœ°ä¸€æ¨¡è¿˜æœ‰</h1>
+      <h1>¾àÀëÉúµØÖĞ¿¼»¹ÓĞ</h1>
       <div class="container" id="left"></div>
       <div class="container">
         <div class="time" id="d">14</div>
-        <p>å¤©</p>
+        <p>Ìì</p>
       </div>
       <div class="container">
         <div class="time" id="h">3</div>
-        <p>å°æ—¶</p>
+        <p>Ğ¡Ê±</p>
       </div>
       <div class="container">
         <div class="time" id="m">1</div>
-        <p>åˆ†é’Ÿ</p>
+        <p>·ÖÖÓ</p>
 
       </div>
       <div class="container">
         <div class="time" id="s">24</div>
-        <p>ç§’</p>
+        <p>Ãë</p>
 
       </div>
-      <h2 id="saying">æ­¤åˆ»æ‰“ç›¹ï¼Œä½ å°†åšæ¢¦ï¼›è€Œæ­¤åˆ»å­¦ä¹ ï¼Œä½ å°†åœ†æ¢¦ã€‚</h2>
+      <h2 id="saying">´Ë¿Ì´òíï£¬Äã½«×öÃÎ£»¶ø´Ë¿ÌÑ§Ï°£¬Äã½«Ô²ÃÎ¡£</h2>
     </div>
     <script>
-      var SayingUpdateCounter = Math.floor(Math.random()*41);
+      var SayingUpdateCounter = Math.floor(Math.random() * 41);
       function updateTime() {
         function isGreaterMouth(Month) {
           return Month == 1 || Month == 3 || Month == 5 || Month == 7 || Month == 8 || Month == 10 || Month == 12
@@ -96,9 +99,9 @@
         var date = new Date()
         var utc8DiffMinutes = date.getTimezoneOffset() + 480
         date.setMinutes(date.getMinutes() + utc8DiffMinutes)
-        date.setMonth(date.getMonth()+1);
-        var countdownTarget = new Date(2021, 4, 29, 0, 0, 0, 0)
-        var d = 0
+        date.setMonth(date.getMonth() + 1);
+        var countdownTarget = new Date(2021, 6, 27, 0, 0, 0, 0)
+        var d = -1
         var h = 23 - date.getHours();
         var m = 59 - date.getMinutes();
         var s = 59 - date.getSeconds();
@@ -110,70 +113,73 @@
             d += 30
           }
         }
-        if (isGreaterMouth(date.getMonth())) {
-          d += 31 - date.getDate();
+        if (date.getMonth() == countdownTarget.getMonth()) {
+          d += countdownTarget.getDate() - date.getDate();
         }
-        else {
-          d += 30 - date.getDate();
+        else{
+          d += countdownTarget.getDate();
+	  if (isGreaterMouth(date.getMonth())) {
+            d += 31 - date.getDate();
+          }
+          else {
+            d += 30 - date.getDate();
+          }
         }
-        if (date.getMonth() != countdownTarget.getMonth()) {
-          d += countdownTarget.getDate()
-        }
-        document.getElementById("d").innerText=d.toString();
-        document.getElementById("h").innerText=h.toString();
-        document.getElementById("m").innerText=m.toString();
-        document.getElementById("s").innerText=s.toString();
+        document.getElementById("d").innerText = d.toString();
+        document.getElementById("h").innerText = h.toString();
+        document.getElementById("m").innerText = m.toString();
+        document.getElementById("s").innerText = s.toString();
       }
-      function updateSaying(){
+      function updateSaying() {
         var Sayings = new Array();
-        Sayings[0] = "æ­¤åˆ»æ‰“ç›¹ï¼Œä½ å°†åšæ¢¦ï¼›è€Œæ­¤åˆ»å­¦ä¹ ï¼Œä½ å°†åœ†æ¢¦ã€‚<br>This moment will nap, you will have a dream; But this moment study, you will interpret a dream.";
-        Sayings[1] = "å‹¿å°†ä»Šæ—¥ä¹‹äº‹æ‹–åˆ°æ˜æ—¥ã€‚<br>Not matter of the today will drag tomorrow."
-        Sayings[2] = "è§‰å¾—ä¸ºæ—¶å·²æ™šçš„æ—¶å€™ï¼Œæ°æ°æ˜¯æœ€æ—©çš„æ—¶å€™ã€‚<br>Thought is already is late, exactly is the earliest time."
-        Sayings[3] = "æˆ‘è’åºŸçš„ä»Šæ—¥ï¼Œæ­£æ˜¯æ˜¨æ—¥æ®’èº«ä¹‹äººç¥ˆæ±‚çš„æ˜æ—¥ã€‚<br>I leave uncultivated today, was precisely yesterday perishestomorrow which person of the body implored."
-        Sayings[4] = "å­¦ä¹ è¿™ä»¶äº‹ï¼Œä¸æ˜¯ç¼ºä¹æ—¶é—´ï¼Œè€Œæ˜¯ç¼ºä¹åŠªåŠ›ã€‚<br>Studies this matter, lacks the time, but is lacks diligently."
-        Sayings[5] = "å­¦ä¹ æ—¶çš„è‹¦ç—›æ˜¯æš‚æ—¶çš„ï¼Œæœªå­¦åˆ°çš„ç—›è‹¦æ˜¯ç»ˆç”Ÿçš„ã€‚<br>Time the study pain is temporary, has not learned the pain islife-long."
-        Sayings[6] = "å¹¸ç¦æˆ–è®¸ä¸æ’åæ¬¡ï¼Œä½†æˆåŠŸå¿…æ’åæ¬¡ã€‚<br>Perhaps happiness does not arrange the position, but succeeds mustarrange the position."
-        Sayings[7] = "å­¦ä¹ å¹¶ä¸æ˜¯äººç”Ÿçš„å…¨éƒ¨ã€‚ä½†ï¼Œæ—¢ç„¶è¿äººç”Ÿçš„ä¸€éƒ¨åˆ†â€”â€”å­¦ä¹ ä¹Ÿæ— æ³•å¾æœï¼Œè¿˜èƒ½åšä»€ä¹ˆå‘¢ï¼Ÿ<br>The study certainly is not the life complete. But, sincecontinually life part of â€”â€” studies also is unable to conquer, what butalso can make?"
-        Sayings[8] = "è¯·äº«å—æ— æ³•å›é¿çš„ç—›è‹¦ã€‚<br>Please enjoy the pain which is unable to avoid."
-        Sayings[9] = "åªæœ‰æ¯”åˆ«äººæ›´æ—©ã€æ›´å‹¤å¥‹åœ°åŠªåŠ›ï¼Œæ‰èƒ½å°åˆ°æˆåŠŸçš„æ»‹å‘³ã€‚<br>Only has compared to the others early, diligently diligently, canfeel the successful taste."
-        Sayings[10] = "è°ä¹Ÿä¸èƒ½éšéšä¾¿ä¾¿æˆåŠŸï¼Œå®ƒæ¥è‡ªå½»åº•çš„è‡ªæˆ‘ç®¡ç†å’Œæ¯…åŠ›ã€‚<br>Nobody can casually succeed, it comes from the thoroughself-control and the will."
-        Sayings[11] = "æ—¶é—´åœ¨æµé€ã€‚<br>The time is passing."
-        Sayings[12] = "ç°åœ¨æ·Œçš„å“ˆå–‡å­ï¼Œå°†æˆä¸ºæ˜å¤©çš„çœ¼æ³ªã€‚<br>Now drips the saliva, will become tomorrow the tear."
-        Sayings[13] = "ä¸€å¤©è¿‡å®Œï¼Œä¸ä¼šå†æ¥ã€‚<br>One day, has not been able again to come."
-        Sayings[14] = "å³ä½¿ç°åœ¨ï¼Œå¯¹æ‰‹ä¹Ÿä¸åœåœ°ç¿»åŠ¨ä¹¦é¡µã€‚<br>Even if the present, the match does not stop changes the page."
-        Sayings[15] = "æ²¡æœ‰è‰°è¾›ï¼Œä¾¿æ— æ‰€è·ã€‚<br>Has not been difficult, then does not have attains."
-        Sayings[16] = "ç‹—ä¸€æ ·åœ°å­¦ï¼Œç»…å£«ä¸€æ ·åœ°ç©ã€‚<br>The dog equally study, the gentleman equally plays."
-        Sayings[17] = "ä»Šå¤©ä¸èµ°ï¼Œæ˜å¤©è¦è·‘ã€‚<br>Today does not walk, will have to run tomorrow."
-        Sayings[18] = "æŠ•èµ„æœªæ¥çš„äººæ˜¯ï¼Œå¿ äºç°å®çš„äººã€‚<br>The investment future person will be, will be loyal to the realityperson."
-        Sayings[19] = "é»‘å‘ä¸çŸ¥å‹¤å­¦æ—©ï¼Œç™½å‘æ–¹æ‚”è¯»ä¹¦è¿Ÿã€‚â€”â€”é¢œçœŸå¿"
-        Sayings[20] = "å¾ç”Ÿä¹Ÿæœ‰æ¶¯ï¼Œè€ŒçŸ¥ä¹Ÿæ— æ¶¯ã€‚â€”â€”åº„å­"
-        Sayings[21] = "è°å¯¹æ—¶é—´æœ€åå•¬ï¼Œæ—¶é—´å¯¹è°è¶Šæ…·æ…¨ã€‚è¦æ—¶é—´ä¸è¾œè´Ÿä½ ï¼Œé¦–å…ˆä½ è¦ä¸è¾œè´Ÿæ—¶é—´ã€‚æ”¾å¼ƒæ—¶é—´çš„äººï¼Œæ—¶é—´ä¹Ÿæ”¾å¼ƒä»–ã€‚"
-        Sayings[22] = "æ—¶é—´ï¼Œå¤©å¤©å¾—åˆ°çš„éƒ½æ˜¯äºŒåå››å°æ—¶ï¼Œå¯æ˜¯ä¸€å¤©çš„æ—¶é—´ç»™å‹¤å‹‰çš„äººå¸¦æ¥èªæ˜å’Œæ°”åŠ›ï¼Œç»™æ‡’æ•£çš„äººåªç•™ä¸‹ä¸€ç‰‡æ‚”æ¨ã€‚â€”â€”é²è¿…"
-        Sayings[23] = "ç››å¹´ä¸é‡æ¥ï¼Œä¸€æ—¥éš¾å†æ™¨ã€‚åŠæ—¶å®œè‡ªå‹‰ï¼Œå²æœˆä¸å¾…äººã€‚â€”â€”é™¶æ¸Šæ˜"
-        Sayings[24] = "å¤©è¡Œå¥ï¼Œå›å­ä»¥è‡ªå¼·ä¸æ¯ï¼Œåœ°å‹¢å¤ï¼Œå›å­ä»¥åšå¾·è½½ç‰©ã€‚"
-        Sayings[25] = "å•æ˜¯è¯´ä¸è¡Œï¼Œè¦ç´§çš„æ˜¯åšã€‚â€”â€”é²è¿…"
-        Sayings[26] = "å“ªé‡Œæœ‰å¤©æ‰ï¼Œæˆ‘åªæ˜¯æŠŠåˆ«äººå–å’–å•¡çš„å·¥å¤«éƒ½ç”¨åœ¨äº†å·¥ä½œä¸Šäº†ã€‚â€”â€”é²è¿…"
-        Sayings[27] = "åšå­¦è€Œç¬ƒå¿—ï¼Œåˆ‡é—®è€Œè¿‘æ€ã€‚â€”â€”ã€Šè®ºè¯­Â·å­å¼ ã€‹"
-        Sayings[28] = "å›å­å¼ºå­¦è€ŒåŠ›è¡Œã€‚â€”â€”æ¨é›„ã€Šæ³•è¨€Â·ä¿®èº«ã€‹"
-        Sayings[29] = "ä¸ç§¯è·¬æ­¥ï¼Œæ— ä»¥è‡³åƒé‡Œï¼›ä¸ç§¯å°æµï¼Œæ— ä»¥æˆæ±Ÿæµ·ã€‚â€”â€”ã€Šè€å­Â·åŠå­¦ã€‹"
-        Sayings[30] = "æ•…å¤©å°†é™å¤§ä»»äºæ˜¯äººä¹Ÿï¼Œå¿…å…ˆè‹¦å…¶å¿ƒå¿—ï¼ŒåŠ³å…¶ç­‹éª¨ï¼Œé¥¿å…¶ä½“è‚¤ï¼Œç©ºä¹å…¶èº«ï¼Œè¡Œæ‹‚ä¹±å…¶æ‰€ä¸ºï¼Œæ‰€ä»¥åŠ¨å¿ƒå¿æ€§ï¼Œæ›¾ç›Šå…¶æ‰€ä¸èƒ½ã€‚â€”â€”ã€Šå­Ÿå­ã€‹"
-        Sayings[31] = "å…‰æ™¯ä¸å¾…äººï¼Œé¡»åŸå‘æˆä¸ã€‚â€”â€”æç™½"
-        Sayings[32] = "æ˜æ—¥å¤æ˜æ—¥ï¼Œæ˜æ—¥ä½•å…¶å¤šï¼Œæˆ‘ç”Ÿå¾…æ˜æ—¥ï¼Œä¸‡äº‹æˆè¹‰è·ã€‚â€”â€”ã€Šæ˜æ—¥æ­Œã€‹"
-        Sayings[33] = "æŠŠæ¡ä½ä»Šå¤©ï¼Œèƒœè¿‡ä¸¤ä¸ªæ˜å¤©ã€‚"
-        Sayings[34] = "ä½ è‹¥æ˜¯çˆ±åƒå¤ï¼Œä½ åº”è¯¥çˆ±ç°åœ¨ï¼›æ˜¨æ—¥ä¸èƒ½å”¤å›æ¥ï¼Œæ˜æ—¥è¿˜æ˜¯ä¸å®åœ¨ï¼›ä½ èƒ½ç¡®æœ‰æŠŠæ¡çš„ï¼Œåªæœ‰ä»Šæ—¥çš„ç°åœ¨ã€‚â€”â€”çˆ±é»˜ç”Ÿ"
-        Sayings[35] = "æ•¢äºæµªè´¹å“ªæ€•ä¸€ä¸ªé’Ÿå¤´æ—¶é—´çš„äººï¼Œè¯´æ˜ä»–è¿˜ä¸æ‡‚å¾—çæƒœç”Ÿå‘½çš„å…¨éƒ¨ä»·å€¼ã€‚â€”â€”è¾¾å°”æ–‡"
-        Sayings[36] = "ä¸€åˆ‡èŠ‚çœï¼Œå½’æ ¹åˆ°åº•éƒ½å½’ç»“ä¸ºæ—¶é—´çš„èŠ‚çœã€‚â€”â€”é©¬å…‹æ€"
-        Sayings[37] = "å‡ ç§’é’Ÿè™½ç„¶ä¸é•¿ï¼Œå´æ„æˆæ°¸æ’é•¿æ²³ä¸­çš„ä¼Ÿå¤§æ—¶ä»£ã€‚â€”â€”å¼—è±å½»"
-        Sayings[38] = "ä¸šç²¾äºå‹¤ï¼Œè’äºå¬‰;è¡Œæˆäºæ€ï¼Œæ¯äºéšâ€”â€”éŸ©æ„ˆ"
-        Sayings[39] = "è¯»ä¸‡å·ä¹¦ï¼Œè¡Œä¸‡é‡Œè·¯â€”â€”åˆ˜å½"
-        Sayings[40] = "ä¹¦çŠ¹è¯ä¹Ÿï¼Œå–„è¯»ä¹‹å¯ä»¥åŒ»æ„šâ€”â€”åˆ˜å‘"
-        document.getElementById("saying").innerHTML = Sayings[SayingUpdateCounter%Sayings.length];
+        Sayings[0] = "´Ë¿Ì´òíï£¬Äã½«×öÃÎ£»¶ø´Ë¿ÌÑ§Ï°£¬Äã½«Ô²ÃÎ¡£<br>This moment will nap, you will have a dream; But this moment study, you will interpret a dream.";
+        Sayings[1] = "Îğ½«½ñÈÕÖ®ÊÂÍÏµ½Ã÷ÈÕ¡£<br>Not matter of the today will drag tomorrow."
+        Sayings[2] = "¾õµÃÎªÊ±ÒÑÍíµÄÊ±ºò£¬Ç¡Ç¡ÊÇ×îÔçµÄÊ±ºò¡£<br>Thought is already is late, exactly is the earliest time."
+        Sayings[3] = "ÎÒ»Ä·ÏµÄ½ñÈÕ£¬ÕıÊÇ×òÈÕéæÉíÖ®ÈËÆíÇóµÄÃ÷ÈÕ¡£<br>I leave uncultivated today, was precisely yesterday perishestomorrow which person of the body implored."
+        Sayings[4] = "Ñ§Ï°Õâ¼şÊÂ£¬²»ÊÇÈ±·¦Ê±¼ä£¬¶øÊÇÈ±·¦Å¬Á¦¡£<br>Studies this matter, lacks the time, but is lacks diligently."
+        Sayings[5] = "Ñ§Ï°Ê±µÄ¿àÍ´ÊÇÔİÊ±µÄ£¬Î´Ñ§µ½µÄÍ´¿àÊÇÖÕÉúµÄ¡£<br>Time the study pain is temporary, has not learned the pain islife-long."
+        Sayings[6] = "ĞÒ¸£»òĞí²»ÅÅÃû´Î£¬µ«³É¹¦±ØÅÅÃû´Î¡£<br>Perhaps happiness does not arrange the position, but succeeds mustarrange the position."
+        Sayings[7] = "Ñ§Ï°²¢²»ÊÇÈËÉúµÄÈ«²¿¡£µ«£¬¼ÈÈ»Á¬ÈËÉúµÄÒ»²¿·Ö¡ª¡ªÑ§Ï°Ò²ÎŞ·¨Õ÷·ş£¬»¹ÄÜ×öÊ²Ã´ÄØ£¿<br>The study certainly is not the life complete. But, sincecontinually life part of ¡ª¡ª studies also is unable to conquer, what butalso can make?"
+        Sayings[8] = "ÇëÏíÊÜÎŞ·¨»Ø±ÜµÄÍ´¿à¡£<br>Please enjoy the pain which is unable to avoid."
+        Sayings[9] = "Ö»ÓĞ±È±ğÈË¸üÔç¡¢¸üÇÚ·ÜµØÅ¬Á¦£¬²ÅÄÜ³¢µ½³É¹¦µÄ×ÌÎ¶¡£<br>Only has compared to the others early, diligently diligently, canfeel the successful taste."
+        Sayings[10] = "Ë­Ò²²»ÄÜËæËæ±ã±ã³É¹¦£¬ËüÀ´×Ô³¹µ×µÄ×ÔÎÒ¹ÜÀíºÍÒãÁ¦¡£<br>Nobody can casually succeed, it comes from the thoroughself-control and the will."
+        Sayings[11] = "Ê±¼äÔÚÁ÷ÊÅ¡£<br>The time is passing."
+        Sayings[12] = "ÏÖÔÚÌÊµÄ¹şÀ®×Ó£¬½«³ÉÎªÃ÷ÌìµÄÑÛÀá¡£<br>Now drips the saliva, will become tomorrow the tear."
+        Sayings[13] = "Ò»Ìì¹ıÍê£¬²»»áÔÙÀ´¡£<br>One day, has not been able again to come."
+        Sayings[14] = "¼´Ê¹ÏÖÔÚ£¬¶ÔÊÖÒ²²»Í£µØ·­¶¯ÊéÒ³¡£<br>Even if the present, the match does not stop changes the page."
+        Sayings[15] = "Ã»ÓĞ¼èĞÁ£¬±ãÎŞËù»ñ¡£<br>Has not been difficult, then does not have attains."
+        Sayings[16] = "¹·Ò»ÑùµØÑ§£¬ÉğÊ¿Ò»ÑùµØÍæ¡£<br>The dog equally study, the gentleman equally plays."
+        Sayings[17] = "½ñÌì²»×ß£¬Ã÷ÌìÒªÅÜ¡£<br>Today does not walk, will have to run tomorrow."
+        Sayings[18] = "Í¶×ÊÎ´À´µÄÈËÊÇ£¬ÖÒÓÚÏÖÊµµÄÈË¡£<br>The investment future person will be, will be loyal to the realityperson."
+        Sayings[19] = "ºÚ·¢²»ÖªÇÚÑ§Ôç£¬°×·¢·½»Ú¶ÁÊé³Ù¡£¡ª¡ªÑÕÕæÇä"
+        Sayings[20] = "ÎáÉúÒ²ÓĞÑÄ£¬¶øÖªÒ²ÎŞÑÄ¡£¡ª¡ª×¯×Ó"
+        Sayings[21] = "Ë­¶ÔÊ±¼ä×îÁßØÄ£¬Ê±¼ä¶ÔË­Ô½¿¶¿®¡£ÒªÊ±¼ä²»¹¼¸ºÄã£¬Ê×ÏÈÄãÒª²»¹¼¸ºÊ±¼ä¡£·ÅÆúÊ±¼äµÄÈË£¬Ê±¼äÒ²·ÅÆúËû¡£"
+        Sayings[22] = "Ê±¼ä£¬ÌìÌìµÃµ½µÄ¶¼ÊÇ¶şÊ®ËÄĞ¡Ê±£¬¿ÉÊÇÒ»ÌìµÄÊ±¼ä¸øÇÚÃãµÄÈË´øÀ´´ÏÃ÷ºÍÆøÁ¦£¬¸øÀÁÉ¢µÄÈËÖ»ÁôÏÂÒ»Æ¬»ÚºŞ¡£¡ª¡ªÂ³Ñ¸"
+        Sayings[23] = "Ê¢Äê²»ÖØÀ´£¬Ò»ÈÕÄÑÔÙ³¿¡£¼°Ê±ÒË×ÔÃã£¬ËêÔÂ²»´ıÈË¡£¡ª¡ªÌÕÔ¨Ã÷"
+        Sayings[24] = "ÌìĞĞ½¡£¬¾ı×ÓÒÔ×ÔŠ²»Ï¢£¬µØ„İÀ¤£¬¾ı×ÓÒÔºñµÂÔØÎï¡£"
+        Sayings[25] = "µ¥ÊÇËµ²»ĞĞ£¬Òª½ôµÄÊÇ×ö¡£¡ª¡ªÂ³Ñ¸"
+        Sayings[26] = "ÄÄÀïÓĞÌì²Å£¬ÎÒÖ»ÊÇ°Ñ±ğÈËºÈ¿§·ÈµÄ¹¤·ò¶¼ÓÃÔÚÁË¹¤×÷ÉÏÁË¡£¡ª¡ªÂ³Ñ¸"
+        Sayings[27] = "²©Ñ§¶øóÆÖ¾£¬ÇĞÎÊ¶ø½üË¼¡£¡ª¡ª¡¶ÂÛÓï¡¤×ÓÕÅ¡·"
+        Sayings[28] = "¾ı×ÓÇ¿Ñ§¶øÁ¦ĞĞ¡£¡ª¡ªÑîĞÛ¡¶·¨ÑÔ¡¤ĞŞÉí¡·"
+        Sayings[29] = "²»»ıõÍ²½£¬ÎŞÒÔÖÁÇ§Àï£»²»»ıĞ¡Á÷£¬ÎŞÒÔ³É½­º£¡£¡ª¡ª¡¶Ü÷×Ó¡¤È°Ñ§¡·"
+        Sayings[30] = "¹ÊÌì½«½µ´óÈÎÓÚÊÇÈËÒ²£¬±ØÏÈ¿àÆäĞÄÖ¾£¬ÀÍÆä½î¹Ç£¬¶öÆäÌå·ô£¬¿Õ·¦ÆäÉí£¬ĞĞ·÷ÂÒÆäËùÎª£¬ËùÒÔ¶¯ĞÄÈÌĞÔ£¬ÔøÒæÆäËù²»ÄÜ¡£¡ª¡ª¡¶ÃÏ×Ó¡·"
+        Sayings[31] = "¹â¾°²»´ıÈË£¬ĞëÛÅ·¢³ÉË¿¡£¡ª¡ªÀî°×"
+        Sayings[32] = "Ã÷ÈÕ¸´Ã÷ÈÕ£¬Ã÷ÈÕºÎÆä¶à£¬ÎÒÉú´ıÃ÷ÈÕ£¬ÍòÊÂ³ÉõãõÉ¡£¡ª¡ª¡¶Ã÷ÈÕ¸è¡·"
+        Sayings[33] = "°ÑÎÕ×¡½ñÌì£¬Ê¤¹ıÁ½¸öÃ÷Ìì¡£"
+        Sayings[34] = "ÄãÈôÊÇ°®Ç§¹Å£¬ÄãÓ¦¸Ã°®ÏÖÔÚ£»×òÈÕ²»ÄÜ»½»ØÀ´£¬Ã÷ÈÕ»¹ÊÇ²»ÊµÔÚ£»ÄãÄÜÈ·ÓĞ°ÑÎÕµÄ£¬Ö»ÓĞ½ñÈÕµÄÏÖÔÚ¡£¡ª¡ª°®Ä¬Éú"
+        Sayings[35] = "¸ÒÓÚÀË·ÑÄÄÅÂÒ»¸öÖÓÍ·Ê±¼äµÄÈË£¬ËµÃ÷Ëû»¹²»¶®µÃÕäÏ§ÉúÃüµÄÈ«²¿¼ÛÖµ¡£¡ª¡ª´ï¶ûÎÄ"
+        Sayings[36] = "Ò»ÇĞ½ÚÊ¡£¬¹é¸ùµ½µ×¶¼¹é½áÎªÊ±¼äµÄ½ÚÊ¡¡£¡ª¡ªÂí¿ËË¼"
+        Sayings[37] = "¼¸ÃëÖÓËäÈ»²»³¤£¬È´¹¹³ÉÓÀºã³¤ºÓÖĞµÄÎ°´óÊ±´ú¡£¡ª¡ª¸¥À³³¹"
+        Sayings[38] = "Òµ¾«ÓÚÇÚ£¬»ÄÓÚæÒ;ĞĞ³ÉÓÚË¼£¬»ÙÓÚËæ¡ª¡ªº«Óú"
+        Sayings[39] = "¶ÁÍò¾íÊé£¬ĞĞÍòÀïÂ·¡ª¡ªÁõÒÍ"
+        Sayings[40] = "ÊéÓÌÒ©Ò²£¬ÉÆ¶ÁÖ®¿ÉÒÔÒ½ÓŞ¡ª¡ªÁõÏò"
+        document.getElementById("saying").innerHTML = Sayings[SayingUpdateCounter % Sayings.length];
         SayingUpdateCounter++;
       }
       updateTime();
       updateSaying();
       setInterval("updateTime()", 1000);
-      setInterval("updateSaying()",1000*90);
+      setInterval("updateSaying()", 1000 * 90);
     </script>
 
 </body>
