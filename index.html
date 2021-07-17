@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html><head><meta charset="utf-8">
     
-    <title>　</title>
+    <title>中考倒计时</title>
 
     <style>
         body {
@@ -11,7 +11,7 @@
 
         .page {
           position: fixed;
-          width: 110%;
+          width: 100%;
           height: 100%;
         }
 
@@ -21,41 +21,33 @@
           margin: auto;
           text-align: center;
         }
-
-        .time_container {
-        }
-
-        .date_container {
-
-        }
         .time {
-          padding-top : 100px;
-          font-size: 20rem;
+          padding-top : 50px;
+          font-size: 10rem;
         }
         .date {
-          padding-top: 20px;
-          font-size: 8rem;
+          padding-top: 10px;
+          font-size: 4rem;
         }
         .c{
-          padding-top : 30px;
+          padding-top : 10px;
           font-size: 3rem;     
         }
     </style>
 </head>
 
-<body>
+  <body>
     <div class="page">
       <div class="time_container">
           <div class="time" id="time">6:20</div>
       </div>
 
       <div class="date_container">
-          <div class="date" id="date">3月27日</div>
-          <div class="date" id="week">星期六</div>
+          <div class="date" id="date">3�?27�?</div>
+          <div class="date" id="week">星期�?</div>
           <div class="c" id="countdown"></div>
       </div>
-    <div id="extwaiokist" style="display:none" v="lfjoi" q="71989b40" c="252.8" i="262" u="639.5" s="02242105" d="1" w="false" e="" m="BMe="><div id="extwaiimpotscp" style="display:none" v="lfjoi" q="71989b40" c="252.8" i="262" u="639.5" s="02242105" d="1" w="false" e="" m="BMe=" vn="3scrn"></div></div></div>
-
+    </div>
 
     <script>
       function update() {
@@ -70,25 +62,14 @@
         var dateString = (date.getMonth() + 1) + '月' + date.getDate() + '日'
         var weekList = ['日', '一', '二', '三', '四', '五', '六']
         var weekString = '星期' + weekList[date.getDay()]
-        var countdownTarget = new Date(2021,6,28,8,0,0,0)
-        var d = 0
-        var h = 24 - date.getHours();
-        for(var i = date.getMonth()+2;i<countdownTarget.getMonth();i++){
-            if(isGreaterMouth(i)){
-            d += 31
-            }
-            else{
-            d += 30
-            }
-        }
-        if(isGreaterMouth(date.getMonth()+1)){
-            d += 31-date.getDate()
-        }
-        else{
-            d += 30-date.getDate()
-        }
-        d += countdownTarget.getDate()
-        var countdownString = "距离生地中考还有"+d.toString()+"天" + h +"小时";
+        var countdownTarget = new Date(2022,6,24,0,0,0,0)
+        var date = new Date()
+        var utc8DiffMinutes = date.getTimezoneOffset() + 480
+        date.setMinutes(date.getMinutes() + utc8DiffMinutes)
+        date.setMonth(date.getMonth() + 1);
+        var countdownTarget = new Date(2022, 6,24 , date.getHours(), date.getMinutes(), date.getSeconds(), 0)
+        d = Math.trunc(Math.abs((countdownTarget - date)/(1000*60*60*24)))
+        var countdownString = "距中考还有"+d.toString()+"天";
 
         document.getElementById("time").innerHTML = timeString
         document.getElementById("date").innerHTML = dateString
@@ -100,4 +81,5 @@
       setInterval("update()", 60*1000)
     </script>
 
-</body></html>
+  </body>
+</html>
