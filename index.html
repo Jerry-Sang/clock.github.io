@@ -67,8 +67,8 @@
         var utc8DiffMinutes = date.getTimezoneOffset() + 480
         date.setMinutes(date.getMinutes() + utc8DiffMinutes)
         date.setMonth(date.getMonth() + 1);
-        var countdownTarget = new Date(2022, 6,24 , date.getHours(), date.getMinutes(), date.getSeconds(), 0)
-        d = Math.trunc(Math.abs((countdownTarget - date)/(1000*60*60*24)))
+        var countdownTarget = new Date(2021, 7,18, date.getHours(), date.getMinutes(), date.getSeconds(), 0)
+        d = Math.trunc(Math.abs((countdownTarget - date)/(1000*60*60*24)))+1
         var countdownString = "距中考还有"+d.toString()+"天";
 
         document.getElementById("time").innerHTML = timeString
