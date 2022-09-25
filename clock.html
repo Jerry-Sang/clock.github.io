@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta content="charset=utf-8;width=device-width">
+
+  <title>高考倒计时</title>
+
+  <style>
+    body {
+      background-color: #444444;
+    }
+
+    .page {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+
+    #up {
+      height: 10vh;
+    }
+
+    #left {
+      width: 13vw;
+      height: 10rem;
+    }
+
+    .text {
+      font-family: Sans-serif;
+      text-align: center;
+      color: rgb(255, 255, 255);
+    }
+
+    .container {
+      float: left;
+    }
+
+    p {
+      font-size: 2vw;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 5rem;
+    }
+
+    .time {
+      background-color: #4e74c5;
+      margin-right: 1vw;
+      width: 17vw;
+      height: 12vw;
+      font-size: 9vw;
+      vertical-align: middle;
+    }
+
+    h2 {
+      clear: both;
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+    }
+
+    .TimeSelection {
+      position: absolute;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="TimeSelection">
+      <button id="Select" onclick="SelectButtonClick()">更改日期</button>
+      <div id="exams" style="visibility:hidden;">
+        <h1 style="font-size: small;color: white;" id="0">中考:<input type="date" /></h1>
+        <h1 style="font-size: small;color: white;" id="1">中考:<input type="date" /></h1>
+        <h1 style="font-size: small;color: white;" id="2">中考:<input type="date" /></h1>
+      </div>
+    </div>
+    <div class="break" id="up"></div>
+    <div class="text">
+      <h1 id="title">距离高考还有</h1>
+      <div class="container" id="left"></div>
+      <div class="container">
+        <div class="time" id="d">14</div>
+        <p>天</p>
+      </div>
+      <div class="container">
+        <div class="time" id="h">3</div>
+        <p>小时</p>
+      </div>
+      <div class="container">
+        <div class="time" id="m">1</div>
+        <p>分钟</p>
+
+      </div>
+      <div class="container">
+        <div class="time" id="s">24</div>
+        <p>秒</p>
+
+      </div>
+      <h2 id="saying">觉得为时已晚的时候，恰恰是最早的时候。<br> Thought is already is late， exactly is the earliest time。</h2>
+    </div>
+    <script>
+        var Sayings = new Array();
+        Sayings[0] = "到中流击水，浪遏飞舟！";
+        Sayings[1] = "v=v₀+at"
+        Sayings[2] = "集合具有无序性、确定性、互异性"
+        Sayings[3] = "f(x)=ax => f`(x)=a"
+        Sayings[4] = "a=(x,y) b=(u,v) a·b=xu+yv"
+        Sayings[5] = "2H₂O + 2Na ==== 2NaOH + H₂↑"
+        Sayings[6] = "正弦定理：三角形三边边长与对角的正弦值成正比，比值恰好为三角形外接圆直径长"
+        Sayings[7] = "数学归纳法的使用：先证明“第一块骨牌会倒下”，再证明“前一块骨牌倒下则后一块骨牌倒下”"
+        Sayings[8] = "冲量是力在时间上的累积"
+        Sayings[9] = "天姥连天向天横，势拔五岳掩赤城"
+        Sayings[10] = "第一宇宙速度：v=√gr"
+        Sayings[11] = "动能定理：ΔEk=W"
+        Sayings[12] = "牛顿第二定律：F=ma"
+        Sayings[13] = "对酒当歌，人生几何？"
+        Sayings[14] = "乘法求导：前导后不导+后导前不导"
+        Sayings[15] = "F=Eq"
+        Sayings[16] = "W=qU"
+        Sayings[17] = "x=v₀t+½at²"
+        Sayings[18] = "觉得为时已晚的时候，恰恰是最早的时候.<br>Thought is already is late， exactly is the earliest time。"
+        Sayings[19] = "今天不走，明天要跑。<br>Today does not walk， will have to run tomorrow。"
+        Sayings[20] = "吾生也有涯，而知也无涯。——庄子"
+        Sayings[21] = "谁对时间最吝啬，时间对谁越慷慨。要时间不辜负你，首先你要不辜负时间。放弃时间的人，时间也放弃他。"
+        Sayings[22] = "时间，天天得到的都是二十四小时，可是一天的时间给勤勉的人带来聪明和气力，给懒散的人只留下一片悔恨。——鲁迅"
+        Sayings[23] = "盛年不重来，一日难再晨。及时宜自勉，岁月不待人。——陶渊明"
+        Sayings[24] = "天行健，君子以自強不息，地勢坤，君子以厚德载物。"
+        Sayings[25] = "单是说不行，要紧的是做。——鲁迅"
+        Sayings[26] = "哪里有天才，我只是把别人喝咖啡的工夫都用在了工作上了。——鲁迅"
+        Sayings[27] = "博学而笃志，切问而近思。——《论语·子张》"
+        Sayings[28] = "君子强学而力行。——杨雄《法言·修身》"
+        Sayings[29] = "不积跬步，无以至千里；不积小流，无以成江海。——《荀子·劝学》"
+        Sayings[30] = "故天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为，所以动心忍性，曾益其所不能。——《孟子》"
+        Sayings[31] = "光景不待人，须叟发成丝。——李白"
+        Sayings[32] = "明日复明日，明日何其多，我生待明日，万事成蹉跎。——《明日歌》"
+        Sayings[33] = "把握住今天，胜过两个明天。"
+        Sayings[34] = "你若是爱千古，你应该爱现在；昨日不能唤回来，明日还是不实在；你能确有把握的，只有今日的现在。——爱默生"
+        Sayings[35] = "敢于浪费哪怕一个钟头时间的人，说明他还不懂得珍惜生命的全部价值。——达尔文"
+        Sayings[36] = "一切节省，归根到底都归结为时间的节省。——马克思"
+        Sayings[37] = "几秒钟虽然不长，却构成永恒长河中的伟大时代。——弗莱彻"
+        Sayings[38] = "业精于勤，荒于嬉;行成于思，毁于随——韩愈"
+        Sayings[39] = "读万卷书，行万里路——刘彝"
+        Sayings[40] = "书犹药也，善读之可以医愚——刘向"     
+        Sayings[41] = "此刻打盹，你将做梦；而此刻学习，你将圆梦。<br>This moment will nap, you will have a dream; But this moment study, you will interpret a dream.";
+        Sayings[42] = "勿将今日之事拖到明日。<br>Not matter of the today will drag tomorrow."
+        Sayings[43] = "觉得为时已晚的时候，恰恰是最早的时候。<br>Thought is already is late, exactly is the earliest time."
+        Sayings[44] = "我荒废的今日，正是昨日殒身之人祈求的明日。<br>I leave uncultivated today, was precisely yesterday perishestomorrow which person of the body implored."
+        Sayings[45] = "学习这件事，不是缺乏时间，而是缺乏努力。<br>Studies this matter, lacks the time, but is lacks diligently."
+        Sayings[46] = "学习时的苦痛是暂时的，未学到的痛苦是终生的。<br>Time the study pain is temporary, has not learned the pain islife-long."
+        Sayings[47] = "幸福或许不排名次，但成功必排名次。<br>Perhaps happiness does not arrange the position, but succeeds mustarrange the position."
+        Sayings[48] = "学习并不是人生的全部。但，既然连人生的一部分——学习也无法征服，还能做什么呢？<br>The study certainly is not the life complete. But, sincecontinually life part of —— studies also is unable to conquer, what butalso can make?"
+        Sayings[49] = "请享受无法回避的痛苦。<br> Please enjoy the pain which is unable to avoid."
+        Sayings[50] = "只有比别人更早、更勤奋地努力，才能尝到成功的滋味。<br>Only has compared to the others early, diligently diligently, canfeel the successful taste."
+        Sayings[51] = "谁也不能随随便便成功，它来自彻底的自我管理和毅力。<br>Nobody can casually succeed, it comes from the thoroughself-control and the will."
+        Sayings[52] = "时间在流逝。<br> The time is passing."
+        Sayings[53] = "现在淌的哈喇子，将成为明天的眼泪。<br> Now drips the saliva, will become tomorrow the tear."
+        Sayings[54] = "一天过完，不会再来。<br> One day, has not been able again to come."
+        Sayings[55] = "即使现在，对手也不停地翻动书页。<br>Even if the present, the match does not stop changes the page."
+        Sayings[56] = "没有艰辛，便无所获。<br> Has not been difficult, then does not have attains."
+        Sayings[57] = "狗一样地学，绅士一样地玩。<br> The dog equally study, the gentleman equally plays."
+        Sayings[58] = "今天不走，明天要跑。<br> Today does not walk, will have to run tomorrow."
+        Sayings[59] = "投资未来的人是，忠于现实的人。<br> The investment future person will be, will be loyal to the realityperson."
+        Sayings[60] = "黑发不知勤学早，白发方悔读书迟。——颜真卿"   
+
+      function getDate() {
+        var date = new Date()
+        var utc8DiffMinutes = date.getTimezoneOffset() + 480
+        date.setMinutes(date.getMinutes() + utc8DiffMinutes)
+        date.setMonth(date.getMonth() + 1);
+        return date;
+      }
+      var today = getDate();
+      function Exam(name, time) {
+        this.name = name;
+        this.time = time;
+      }
+      var examDate = new Date(2022, 6, 24, today.getHours(), today.getMinutes(), today.getSeconds(), today.getMilliseconds());
+      var ClickCounter = 0;
+      var Exams = new Array();
+      Exams[0] = new Exam("海淀区高一上期中考试", new Date(2022, 11, 1));
+      Exams[1] = new Exam("海淀区高一上期末考试", new Date(2023, 1, 3));
+      Exams[2] = new Exam("高考", new Date(2025, 6, 7));
+      var day = document.getElementById("d");
+      var hour = document.getElementById("h");
+      var minute = document.getElementById("m");
+      var second = document.getElementById("s");
+      var examsElement = document.getElementById("exams");
+      var Dates = new Array();
+      for (var i = 0; i < Exams.length; i++) {
+        var Date_ = Exams[i].time.getDate()
+        var Month_ = Exams[i].time.getMonth()
+        if (Month_ == 0) {
+          Month_ = 12;
+        }
+        var Year_ = Exams[i].time.getFullYear();
+        document.getElementById(i).innerHTML = "<button id=\"b" + i + "\"onClick=\"f" + i + "()\">" + Exams[i].name + "</button><input id=" + "d" + i + " type=\"date\" value=\"" + Year_ + "-" + ("0" + (Month_)).slice(-2) + "-" + ("0" + Date_).slice(-2) + "\"/>";
+        if (Exams[i].time > today) {
+          Dates.push(Exams[i]);
+        }
+      }
+      examDate = Dates[0].time;
+      var currentExamName = "第一学期期中考试";
+      function updateTime() {
+        function isGreaterMouth(Month) {
+          return Month == 1 || Month == 3 || Month == 5 || Month == 7 || Month == 8 || Month == 10 || Month == 12
+        }
+        today = getDate()
+        for (var i = 0; i < Exams.length; i++) {
+          var x = document.getElementById("d" + i.toString()).value.split('-');
+          var Date_ = Number(x[2]);
+          var Month_ = Number(x[1]);
+          var Year_ = Number(x[0]);
+          Exams[i].time.setDate(Date_);
+          Exams[i].time.setMonth(Month_);
+          Exams[i].time.setFullYear(Year_);
+        }
+        examDate.setHours(today.getHours());
+        examDate.setMinutes(today.getMinutes());
+        examDate.setSeconds(today.getSeconds());
+        examDate.setMilliseconds(today.getMilliseconds());
+        var d = (examDate - today) / 1000 / 60 / 60 / 24
+        var h;
+        var m;
+        var s;
+        if (d >= 0) {
+          document.getElementById("title").innerText = "距离" + currentExamName + "还有";
+          h = 23 - today.getHours();
+          m = 59 - today.getMinutes();
+          s = 59 - today.getSeconds();
+          if (d > 10) {
+            for (var index = 0; index < document.getElementsByClassName("time").length; index++) {
+              element = document.getElementsByClassName("time")[index];
+              element.style.backgroundColor = "#4e74c5";
+            }
+          } else {
+            for (var index = 0; index < document.getElementsByClassName("time").length; index++) {
+              element = document.getElementsByClassName("time")[index];
+              element.style.backgroundColor = "#df2f2f"
+            }
+          }
+        } else {
+          document.getElementById("title").innerText = Dates[0].name + "已经过去";
+          d *= -1;
+          h = today.getHours();
+          m = today.getMinutes();
+          s = today.getSeconds();
+          for (var index = 0; index < document.getElementsByClassName("time").length; index++) {
+            element = document.getElementsByClassName("time")[index];
+            element.style.backgroundColor = "#4e74c5";
+          }
+        }
+        day.innerText = d;
+        hour.innerText = h;
+        minute.innerText = m;
+        second.innerText = s;
+      }
+      function updateSaying() {
+        SayingUpdateCounter = Math.floor(Math.random() * 60);
+        document.getElementById("saying").innerHTML = Sayings[SayingUpdateCounter];
+      }
+      f0()
+      updateTime();
+      updateSaying();
+      setInterval("updateTime()", 1000);
+      setInterval("updateSaying()", 1000 * 90);
+      function SelectButtonClick() {
+        if (ClickCounter % 2 == 0) {
+          examsElement.style.visibility = "visible"
+        } else {
+          examsElement.style.visibility = "hidden"
+        }
+        ClickCounter++;
+      }
+      function f0() {
+        examDate = Exams[0].time;
+        currentExamName = Exams[0].name;
+      }
+      function f1() {
+        examDate = Exams[1].time;
+        currentExamName = Exams[1].name;
+
+      }
+      function f2() {
+        examDate = Exams[2].time;
+        currentExamName = Exams[2].name;
+
+      }
+    </script>
+
+</body>
+
+</html>
